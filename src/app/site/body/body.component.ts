@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import * as AuthActions from '../../auth/store/auth.actions';
 import * as fromApp from '../../store/app.reducer';
 
 
@@ -12,17 +13,26 @@ import * as fromApp from '../../store/app.reducer';
 })
 export class BodyComponent implements OnInit {
 
-  isProjectBarOpen$: Observable<boolean> = this.store.select('site')
-    .pipe(
-      map(siteState => siteState.isProjectBarOpen),
-      shareReplay()
-    );
+  isAuthenticated$: Observable<boolean> = this.store.select('auth').pipe(
+    map(authState => !!authState.user)
+  );
 
-  isToolBarOpen$: Observable<boolean> = this.store.select('site')
-    .pipe(
-      map(siteState => siteState.isToolBarOpen),
-      shareReplay()
-    );
+  isProjectBarOpen$: Observable<boolean> = combineLatest(
+    this.isAuthenticated$,
+    this.store.select('site', 'isProjectBarOpen'),
+  ).pipe(
+    map(([isAuthenticated, isProjectBarOpen]) => isAuthenticated && isProjectBarOpen),
+    shareReplay()
+  );
+
+
+  isToolBarOpen$: Observable<boolean> = combineLatest(
+    this.isAuthenticated$,
+    this.store.select('site', 'isToolBarOpen'),
+  ).pipe(
+    map(([isAuthenticated, isToolBarOpen]) => isAuthenticated && isToolBarOpen),
+    shareReplay(),
+  );
 
   constructor(
     private store: Store<fromApp.AppState>
@@ -30,6 +40,10 @@ export class BodyComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  onLogout() {
+    this.store.dispatch(new AuthActions.Logout());
   }
 
 }
