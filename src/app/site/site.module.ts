@@ -5,20 +5,24 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
-import { SharedModule } from '../shared/shared.module';
-import { BodyComponent } from './body/body.component';
-import { ContentComponent } from './body/content/content.component';
-import { ProjectComponent } from './body/project/project.component';
-import { HeaderComponent } from './header/header.component';
+import { StoreModule } from '@ngrx/store';
+import { SharedModule } from '../shared';
+import { BodyComponent, ContentComponent, HeaderComponent, ProjectComponent, SidebarComponent } from './components';
+import { AppComponent } from './containers';
+import { fromSite } from './reducers';
 import { SiteRoutingModule } from './site-routing.module';
 
+export const COMPONENTS = [
+    HeaderComponent,
+    BodyComponent,
+    ProjectComponent,
+    ContentComponent,
+    SidebarComponent,
+    AppComponent
+];
+
 @NgModule({
-    declarations: [
-        HeaderComponent,
-        BodyComponent,
-        ProjectComponent,
-        ContentComponent,
-    ],
+    declarations: COMPONENTS,
     imports: [
         MatIconModule,
         MatToolbarModule,
@@ -27,7 +31,8 @@ import { SiteRoutingModule } from './site-routing.module';
         MatListModule,
         MatTreeModule,
         MatButtonModule,
-        SiteRoutingModule
+        SiteRoutingModule,
+        StoreModule.forFeature(fromSite.siteFeatureKey, fromSite.reducer)
     ],
     exports: [
         HeaderComponent,

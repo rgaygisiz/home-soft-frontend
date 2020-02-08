@@ -5,19 +5,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { SharedModule } from '../shared/shared.module';
-import { AuthComponent } from './auth.component';
-import { AuthEffects } from './store/auth.effects';
-import * as fromAuth from './store/auth.reducer';
+import { SharedModule } from '../shared';
+import { AuthRoutingModule } from './auth-routing.module';
+import { AuthComponent } from './components';
+import { AuthPageComponent } from './containers';
+import { AuthEffects } from './effects';
+import { fromAuth } from './reducers';
 
+export const COMPONENTS = [
+    AuthPageComponent,
+    AuthComponent,
+];
 
 @NgModule({
-    declarations: [
-        AuthComponent,
-    ],
+    declarations: COMPONENTS,
     imports: [
         SharedModule,
         ReactiveFormsModule,
@@ -26,8 +29,8 @@ import * as fromAuth from './store/auth.reducer';
         MatInputModule,
         MatButtonModule,
         HttpClientModule,
-        RouterModule.forChild([{ path: '', component: AuthComponent }]),
-        StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer),
+        AuthRoutingModule,
+        StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
         EffectsModule.forFeature([AuthEffects])
     ]
 })
