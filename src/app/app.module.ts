@@ -25,14 +25,14 @@ import { fromApp } from './store';
         strictActionImmutability: true,
         strictStateSerializability: true,
         strictActionSerializability: true,
-      }
+      },
     }),
 
     /**
      * @ngrx/router-store keeps router state up-to-date in the store.
      */
     StoreRouterConnectingModule.forRoot({
-      routerState: RouterState.Minimal
+      routerState: RouterState.Minimal,
     }),
 
     /**
@@ -58,6 +58,6 @@ import { fromApp } from './store';
     SiteModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

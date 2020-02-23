@@ -5,16 +5,15 @@ import { TaskScenario } from '../../models';
 @Component({
   selector: 'kosaml-task-scenario',
   templateUrl: './task-scenario.component.html',
-  styleUrls: ['./task-scenario.component.scss']
+  styleUrls: ['./task-scenario.component.scss'],
 })
 export class TaskScenarioComponent implements OnInit {
-
   @Input()
   model: TaskScenario;
 
   taskScenarioForm: FormGroup;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.taskScenarioForm = new FormGroup({
@@ -22,5 +21,4 @@ export class TaskScenarioComponent implements OnInit {
       description: new FormControl(this.model.description),
     });
   }
-
 }

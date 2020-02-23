@@ -6,16 +6,17 @@ import { AuthErrorMatcher } from './AuthErrorMatcher';
 @Component({
   selector: 'kosaml-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
   isLoginMode = true;
   authForm: FormGroup;
 
-  emailFormControl: FormControl
-    = new FormControl(null, [Validators.required, Validators.email]);
-  passwordFormControl: FormControl
-    = new FormControl(null, [Validators.required, Validators.minLength(6)]);
+  emailFormControl: FormControl = new FormControl(null, [Validators.required, Validators.email]);
+  passwordFormControl: FormControl = new FormControl(null, [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
   matcher = new AuthErrorMatcher();
 
   @Input()
@@ -27,8 +28,7 @@ export class AuthComponent implements OnInit {
   @Output()
   registrationSubmitted = new EventEmitter<Credentials>();
 
-  constructor(
-  ) { }
+  constructor() {}
 
   ngOnInit() {
     this.authForm = new FormGroup({
