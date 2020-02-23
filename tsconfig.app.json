@@ -12,7 +12,8 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "src/test.ts",
+    "src/setup-jest.ts",
+    "src/jest.config.ts",
     "src/**/*.spec.ts"
   ]
 }
