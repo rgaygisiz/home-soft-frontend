@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { AuthService } from 'src/app/auth/services';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FileNode } from '../../models';
 
 @Component({
@@ -7,7 +6,7 @@ import { FileNode } from '../../models';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent {
+export class SidebarComponent implements AfterViewInit {
   @Input()
   isProjectBarOpen: boolean;
 
@@ -17,9 +16,83 @@ export class SidebarComponent {
   @Input()
   project: FileNode[];
 
-  constructor(private authService: AuthService) {}
+  @Input()
+  marginTop: number = 56;
+
+  @Input()
+  width: number;
+
+  @Output()
+  logout = new EventEmitter();
+
+  @Output()
+  widthChange = new EventEmitter();
+
+  @ViewChild("sidenav", { static: true, read: ElementRef })
+  matSideNav: ElementRef;
+
+  xOffset: number;
+  startingWidth: number;
+  isResizing: boolean = false;
+
+  constructor() { }
+
+  ngAfterViewInit() {
+    this.setNewWidth(this.width);
+  }
 
   onLogout() {
-    this.authService.logout();
+    this.logout.emit()
+  }
+
+  onMouseDown(event) {
+    this.isResizing = true;
+
+    this.xOffset = event.pageX;
+    this.startingWidth = this.matSideNav.nativeElement.clientWidth;
+
+    this.setMouseCursorToResize();
+
+    event.preventDefault();
+  }
+
+  onMouseUp() {
+    if (this.isResizing) {
+      this.isResizing = false;
+      this.widthChange.next(this.getWidth());
+      this.resetMouseCursor();
+    }
+  }
+
+  onMouseMove(event) {
+    event.preventDefault();
+
+    if (this.isResizing) {
+      this.setNewWidth(
+        event.pageX - this.xOffset + this.startingWidth
+      )
+    }
+  }
+
+  private resetMouseCursor() {
+    document.documentElement.style.cursor = "default"
+  }
+
+  private setMouseCursorToResize() {
+    document.documentElement.style.cursor = "col-resize";
+  }
+
+  private calculateNewWidth(event) {
+    return this.matSideNav.nativeElement.scrollWidth
+      + (event.screenX - this.xOffset)
+  }
+
+  private setNewWidth(newWidth: number) {
+    this.matSideNav.nativeElement.style.width =
+      `${newWidth}px`;
+  }
+
+  private getWidth() {
+    return this.matSideNav.nativeElement.style.width;
   }
 }

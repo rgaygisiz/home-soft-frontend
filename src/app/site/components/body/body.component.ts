@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AuthService } from 'src/app/auth/services';
 import { FileNode } from '../../models';
 
 @Component({
@@ -19,5 +20,21 @@ export class BodyComponent {
   @Input()
   project: FileNode[];
 
-  constructor() {}
+  @Input()
+  sidebarWidth: number;
+
+  @Output()
+  sidebarWidthChange = new EventEmitter()
+
+  constructor(
+    private authService: AuthService
+  ) { }
+
+  onLogout() {
+    this.authService.logout();
+  }
+
+  widthChange(newWidth) {
+    this.sidebarWidthChange.next(newWidth);
+  }
 }
