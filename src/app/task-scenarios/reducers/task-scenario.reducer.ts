@@ -8,17 +8,24 @@ export const taskScenariosFeatureKey = 'taskScenarios';
 
 export interface State extends EntityState<TaskScenario> {
   // additional entities state properties
+  selectedTaskScenarioId: number | null
 }
 
-export const adapter: EntityAdapter<TaskScenario> = createEntityAdapter<TaskScenario>();
+export function selectedTaskScenarioId(ts: TaskScenario) {
+  return ts.id;
+}
+
+export const adapter: EntityAdapter<TaskScenario> = createEntityAdapter<TaskScenario>({
+  selectId: selectedTaskScenarioId
+});
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
+  selectedTaskScenarioId: null
 });
 
 const taskScenarioReducer = createReducer(
   initialState,
-  on(TaskScenarioPageActions.fetchTaskScenarios, state => ({ ...state })),
   on(TaskScenarioActions.addTaskScenario, (state, action) =>
     adapter.addOne(action.taskScenario, state),
   ),
@@ -47,15 +54,37 @@ const taskScenarioReducer = createReducer(
     adapter.addAll(action.taskScenarios, state),
   ),
   on(TaskScenarioActions.clearTaskScenarios, state => adapter.removeAll(state)),
+  on(TaskScenarioPageActions.selectTaskScenario, (state, { id }) =>
+    ({ ...state, selectedTaskScenarioId: id })
+  )
 );
 
 export function reducer(state: State | undefined, action: Action) {
   return taskScenarioReducer(state, action);
 }
 
-export const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+// ----------------
 
-export const taskScenarioState = createFeatureSelector<State>(taskScenariosFeatureKey);
+export const selectTaskScenarioState = createFeatureSelector<State>(
+  taskScenariosFeatureKey
+);
 
-export const getTaskScenarioEntityById = (id: number) =>
-  createSelector(taskScenarioState, (state: State) => state.entities[id]);
+export const selectTaskScenarioEntitiesState = createSelector(
+  selectTaskScenarioState,
+  state => state.entities
+);
+
+export const selectSelectedTaskScenarioId = createSelector(
+  selectTaskScenarioState,
+  state => state.selectedTaskScenarioId
+)
+
+export const { selectEntities: selectTaskScenarioEntities } = adapter.getSelectors();
+
+export const selectSelectedTaskScenario = createSelector(
+  selectTaskScenarioEntities,
+  selectSelectedTaskScenarioId,
+  (entities, selectedId) => {
+    return selectedId && entities && entities[selectedId]
+  }
+)

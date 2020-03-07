@@ -1,13 +1,14 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { AuthActions } from 'src/app/auth/actions';
-import { TaskScenarioActions, TaskScenarioPageActions } from 'src/app/task-scenarios/actions';
+import { fromApp } from 'src/app/store';
+import { TaskScenarioActions } from 'src/app/task-scenarios/actions';
 import { UseScenarioActions, UseScenarioPageActions } from 'src/app/use-scenarios/actions';
 import { SiteActions } from '../actions';
 import { FileNode } from '../models';
 
 export const siteFeatureKey = 'site';
 
-export interface State {
+export interface SiteState {
   isProjectBarOpen: boolean;
   isToolBarOpen: boolean;
   projectStructure: FileNode[];
@@ -15,7 +16,11 @@ export interface State {
   sidebarWidth: string;
 }
 
-const initialState: State = {
+export interface State extends fromApp.State {
+  [siteFeatureKey]: SiteState
+}
+
+const initialState: SiteState = {
   isProjectBarOpen: true,
   isToolBarOpen: false,
   loading: false,
@@ -31,7 +36,7 @@ const initialState: State = {
             {
               name: 'Search and request resource',
               type: 'file',
-              link: '../task-scenarios',
+              link: '../task-scenarios/1',
             },
             {
               name: 'View updates and request resource',
@@ -301,7 +306,6 @@ export const reducer = createReducer(
     state => ({ ...state, loading: false })
   ),
   on(
-    TaskScenarioPageActions.fetchTaskScenarios,
     UseScenarioPageActions.fetchUseScenarios,
     state => ({ ...state, loading: true })
   ),
@@ -316,5 +320,79 @@ export const reducer = createReducer(
   on(
     SiteActions.sidebarWidthChange,
     (state, { width }) => ({ ...state, sidebarWidth: width })
+  ),
+  on(
+    TaskScenarioActions.addTaskScenario,
+    (state: SiteState, { taskScenario }) => {
+
+      const { projectStructure } = state;
+      const newProjectStructe = [
+        {
+          ...projectStructure[0],
+          children: [
+            {
+              ...projectStructure[0].children[0],
+              children: [
+                ...projectStructure[0].children[0].children,
+                {
+                  name: taskScenario.title,
+                  type: "file",
+                  link: `../task-scenarios/${taskScenario.id}`,
+                }
+              ]
+            },
+            {
+              ...projectStructure[0].children[1],
+              children: [
+                ...projectStructure[0].children[1].children,
+                {
+                  name: taskScenario.title,
+                  type: "file",
+                  link: `../use-scenarios/${taskScenario.id}`,
+                }
+              ]
+            },
+            ...projectStructure[0].children.slice(1)
+          ]
+        },
+        { ...projectStructure[1] }
+      ]
+
+      return { ...state, projectStructure: [...newProjectStructe] };
+    }
   )
+);
+
+
+/**
+ * The createFeatureSelector function selects a piece of state from the root of the state object.
+ * This is used for selecting feature states that are loaded eagerly or lazily.
+ */
+export const selectSiteState = createFeatureSelector<State, SiteState>(
+  siteFeatureKey
+);
+
+export const selectIsProjectBarOpen = createSelector(
+  selectSiteState,
+  state => state.isProjectBarOpen
+);
+
+export const selectIsToolBarOpen = createSelector(
+  selectSiteState,
+  state => state.isToolBarOpen
+);
+
+export const selectProjectStructure = createSelector(
+  selectSiteState,
+  state => state.projectStructure
+);
+
+export const selectSidebarWidth = createSelector(
+  selectSiteState,
+  state => state.sidebarWidth
+);
+
+export const selectIsLoading = createSelector(
+  selectSiteState,
+  state => state.loading
 );
