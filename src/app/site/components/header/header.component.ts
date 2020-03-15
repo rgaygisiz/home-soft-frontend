@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  title = 'kosaml';
+  title = 'home soft';
 
   @Input()
   isAuthenticated: boolean;
@@ -14,18 +14,11 @@ export class HeaderComponent implements OnInit {
   @Output()
   toggleProjectBar = new EventEmitter();
 
-  @Output()
-  toggleToolBar = new EventEmitter();
-
   constructor() {}
 
   ngOnInit() {}
 
   onToggleProjectBar() {
     this.toggleProjectBar.emit();
-  }
-
-  onToggleToolBar() {
-    this.toggleToolBar.emit();
   }
 }

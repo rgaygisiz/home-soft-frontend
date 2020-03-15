@@ -1,13 +1,18 @@
 <mat-toolbar>
-    <button mat-button [matMenuTriggerFor]="new">File</button>
+  <button mat-button [matMenuTriggerFor]="banks">Banken</button>
+  <button mat-button [matMenuTriggerFor]="accounts">Bankkonten</button>
+  <button mat-button [matMenuTriggerFor]="persons">Personen</button>
+  <button mat-button>Logout</button>
 
-    <mat-menu #new="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="newMenu">New</button>
-    </mat-menu>
+  <mat-menu #banks>
+    <button mat-menu-item>New</button>
+  </mat-menu>
 
-    <mat-menu #newMenu="matMenu">
-        <button mat-menu-item routerLink="../task-scenarios/new">Task Scenario</button>
-        <button mat-menu-item routerLink="../use-scenarios/new">Use Scenario</button>
-    </mat-menu>
+  <mat-menu #accounts>
+    <button mat-menu-item>New</button>
+  </mat-menu>
 
+  <mat-menu #persons>
+    <button mat-menu-item>New</button>
+  </mat-menu>
 </mat-toolbar>
