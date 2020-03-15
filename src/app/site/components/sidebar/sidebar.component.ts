@@ -17,7 +17,7 @@ export class SidebarComponent implements AfterViewInit {
   project: FileNode[];
 
   @Input()
-  marginTop: number = 56;
+  marginTop: number = 40 + 36;
 
   @Input()
   width: number;
@@ -80,11 +80,6 @@ export class SidebarComponent implements AfterViewInit {
 
   private setMouseCursorToResize() {
     document.documentElement.style.cursor = "col-resize";
-  }
-
-  private calculateNewWidth(event) {
-    return this.matSideNav.nativeElement.scrollWidth
-      + (event.screenX - this.xOffset)
   }
 
   private setNewWidth(newWidth: number) {
