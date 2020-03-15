@@ -45,6 +45,7 @@
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
     "@babel/core": "^7.8.4",
+    "@ngrx/schematics": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
     "@storybook/addon-actions": "^5.3.13",
     "@storybook/addon-links": "^5.3.13",
