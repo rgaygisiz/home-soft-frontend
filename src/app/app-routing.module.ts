@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'project',
-    loadChildren: () => import('./site/site.module').then(module => module.SiteModule),
+    loadChildren: () => import('./site').then(module => module.SiteModule),
   },
   {
     path: 'task-scenarios',
@@ -21,13 +21,22 @@ const routes: Routes = [
     loadChildren: () =>
       import('./use-scenarios/use-scenarios.module').then(module => module.UseScenariosModule),
   },
+  {
+    path: 'banks',
+    loadChildren: () => import('./banks').then(module => module.BanksModule),
+  },
+  {
+    path: 'accounts',
+    loadChildren: () => import('./accounts').then(m => m.AccountsModule),
+  },
+  {
+    path: 'persons',
+    loadChildren: () => import('./persons').then(m => m.PersonsModule),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(
-    routes,
-    { preloadingStrategy: PreloadAllModules }
-  )],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
