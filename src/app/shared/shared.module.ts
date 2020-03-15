@@ -8,6 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { EmptyPageComponent, LoadingSpinnerComponent, ScenarioComponent } from './components';
 import { KosamlCardComponent } from './components/kosaml-card/kosaml-card.component';
+import { MatTableModule } from '@angular/material/table';
+import {MatSliderModule} from '@angular/material/slider';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const COMPONENTS = [
   LoadingSpinnerComponent,
@@ -26,6 +30,10 @@ const COMPONENTS = [
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatTableModule,
+    MatSliderModule,
+    MatPaginatorModule,
+    MatStepperModule,
   ],
   exports: [
     CommonModule,
@@ -33,11 +41,14 @@ const COMPONENTS = [
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatTableModule,
+    MatSliderModule,
+    MatPaginatorModule,
+    MatStepperModule,
+    MatCardModule,
     LoadingSpinnerComponent,
     KosamlCardComponent,
     ScenarioComponent,
   ],
 })
 export class SharedModule { }
-
-// MatFormFieldModule,
