@@ -4,9 +4,10 @@ import { StoreModule } from '@ngrx/store';
 import { BanksRoutingModule } from './banks-routing.module';
 import { BanksComponent } from './components';
 import { fromBank } from './reducers';
+import { BankPageComponent } from './containers/bank-page/bank-page.component';
 
 @NgModule({
-  declarations: [BanksComponent],
+  declarations: [BanksComponent, BankPageComponent],
   imports: [
     CommonModule,
     BanksRoutingModule,
