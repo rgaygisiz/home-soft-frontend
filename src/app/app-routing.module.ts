@@ -12,16 +12,6 @@ const routes: Routes = [
     loadChildren: () => import('./site').then(module => module.SiteModule),
   },
   {
-    path: 'task-scenarios',
-    loadChildren: () =>
-      import('./task-scenarios/task-scenarios.module').then(module => module.TaskScenariosModule),
-  },
-  {
-    path: 'use-scenarios',
-    loadChildren: () =>
-      import('./use-scenarios/use-scenarios.module').then(module => module.UseScenariosModule),
-  },
-  {
     path: 'banks',
     loadChildren: () => import('./banks').then(module => module.BanksModule),
   },
