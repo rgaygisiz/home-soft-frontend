@@ -1,16 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
+import { SharedModule } from '../shared';
 import { AccountsRoutingModule } from './accounts-routing.module';
 // todo: import the according container instead of the component
 import { AccountsComponent } from './components';
+import { AccountsPageComponent } from './containers';
 import { fromAccount } from './reducers';
 
 @NgModule({
-  declarations: [AccountsComponent],
+  declarations: [AccountsComponent, AccountsPageComponent],
   imports: [
     CommonModule,
     AccountsRoutingModule,
+    SharedModule,
     StoreModule.forFeature(fromAccount.accountsFeatureKey, fromAccount.reducer),
   ],
 })

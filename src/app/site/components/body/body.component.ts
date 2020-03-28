@@ -24,11 +24,9 @@ export class BodyComponent {
   sidebarWidth: number;
 
   @Output()
-  sidebarWidthChange = new EventEmitter()
+  sidebarWidthChange = new EventEmitter();
 
-  constructor(
-    private authService: AuthService
-  ) { }
+  constructor(private authService: AuthService) {}
 
   onLogout() {
     this.authService.logout();

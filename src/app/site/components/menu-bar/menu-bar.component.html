@@ -1,18 +1,6 @@
 <mat-toolbar>
-  <button mat-button [matMenuTriggerFor]="banks">Banken</button>
-  <button mat-button [matMenuTriggerFor]="accounts">Bankkonten</button>
-  <button mat-button [matMenuTriggerFor]="persons">Personen</button>
-  <button mat-button>Logout</button>
-
-  <mat-menu #banks>
-    <button mat-menu-item>New</button>
-  </mat-menu>
-
-  <mat-menu #accounts>
-    <button mat-menu-item>New</button>
-  </mat-menu>
-
-  <mat-menu #persons>
-    <button mat-menu-item>New</button>
-  </mat-menu>
+  <button mat-button (click)="goTo('banks')">Banken</button>
+  <button mat-button (click)="goTo('accounts')">Bankkonten</button>
+  <button mat-button (click)="goTo('persons')">Personen</button>
+  <button mat-button (click)="logout()">Logout</button>
 </mat-toolbar>

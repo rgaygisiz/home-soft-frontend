@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
+import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { BankActions } from '../actions';
 import { Bank } from '../models';
 
@@ -11,8 +11,14 @@ export interface State extends EntityState<Bank> {
 
 export const adapter: EntityAdapter<Bank> = createEntityAdapter<Bank>();
 
+// start with some dummy values
 export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
+  ids: [1, 2, 3],
+  entities: {
+    1: { id: 1, name: 'Sparkasse Köln Bonn', bic: 'COLSDE33XXX', blz: '37050198' },
+    2: { id: 1, name: 'Kölner Bank', bic: 'COLSDE33XXX', blz: '37050198' },
+    3: { id: 3, name: 'Sparkasse Düsseldorf', bic: 'COLSDE33XXX', blz: '37050198' },
+  },
 });
 
 const bankReducer = createReducer(
@@ -34,3 +40,9 @@ export function reducer(state: State | undefined, action: Action) {
 }
 
 export const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+
+// ------------
+
+export const selectBanksState = createFeatureSelector<State>(banksFeatureKey);
+
+export const selectAllBanks = createSelector(selectBanksState, selectAll);
