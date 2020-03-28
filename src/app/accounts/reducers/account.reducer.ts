@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
+import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { AccountActions } from '../actions';
 import { Account } from '../models';
 
@@ -34,3 +34,9 @@ export function reducer(state: State | undefined, action: Action) {
 }
 
 export const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+
+// ------------------------
+
+export const selectAccountsState = createFeatureSelector<State>(accountsFeatureKey);
+
+export const selectAllAccounts = createSelector(selectAccountsState, selectAll);

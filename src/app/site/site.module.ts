@@ -9,20 +9,17 @@ import { MatTreeModule } from '@angular/material/tree';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared';
-import { BodyComponent, ContentComponent, HeaderComponent, ProjectComponent, SidebarComponent } from './components';
+import { BodyComponent, ContentComponent, HeaderComponent } from './components';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { AppComponent } from './containers';
 import { SiteEffects } from './effects';
 import { fromSite } from './reducers';
 import { SiteRoutingModule } from './site-routing.module';
 
-
 export const COMPONENTS = [
   HeaderComponent,
   BodyComponent,
-  ProjectComponent,
   ContentComponent,
-  SidebarComponent,
   MenuBarComponent,
   AppComponent,
 ];
@@ -40,8 +37,8 @@ export const COMPONENTS = [
     MatMenuModule,
     SiteRoutingModule,
     StoreModule.forFeature(fromSite.siteFeatureKey, fromSite.reducer),
-    EffectsModule.forFeature([SiteEffects])
+    EffectsModule.forFeature([SiteEffects]),
   ],
   exports: [HeaderComponent, BodyComponent, MenuBarComponent],
 })
-export class SiteModule { }
+export class SiteModule {}
