@@ -1,29 +1,38 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { EmptyPageComponent, LoadingSpinnerComponent, ScenarioComponent } from './components';
-import { KosamlCardComponent } from './components/kosaml-card/kosaml-card.component';
-import { MatTableModule } from '@angular/material/table';
-import {MatSliderModule} from '@angular/material/slider';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import {
+  CardComponent,
+  DataTableComponent,
+  EmptyPageComponent,
+  LoadingSpinnerComponent,
+  PageComponent,
+  ScenarioComponent,
+} from './components';
 
 const COMPONENTS = [
   LoadingSpinnerComponent,
   EmptyPageComponent,
-  KosamlCardComponent,
+  CardComponent,
   ScenarioComponent,
+  DataTableComponent,
+  PageComponent,
 ];
 
 @NgModule({
   declarations: COMPONENTS,
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     NgxSkeletonLoaderModule,
     MatFormFieldModule,
@@ -42,13 +51,14 @@ const COMPONENTS = [
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    MatSliderModule,
     MatPaginatorModule,
     MatStepperModule,
     MatCardModule,
     LoadingSpinnerComponent,
-    KosamlCardComponent,
+    CardComponent,
     ScenarioComponent,
+    DataTableComponent,
+    PageComponent,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}

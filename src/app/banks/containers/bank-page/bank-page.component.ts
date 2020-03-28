@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Bank } from '../../models';
+import { fromBank } from '../../reducers';
 
 @Component({
   selector: 'kosaml-bank-page',
   templateUrl: './bank-page.component.html',
-  styleUrls: ['./bank-page.component.scss']
+  styleUrls: ['./bank-page.component.scss'],
 })
-export class BankPageComponent implements OnInit {
+export class BankPageComponent {
+  banks$: Observable<Bank[]> = this.store.pipe(select(fromBank.selectAllBanks));
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(private store: Store<fromBank.State>) {}
 }

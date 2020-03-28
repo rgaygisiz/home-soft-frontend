@@ -11,20 +11,24 @@ import { fromAuth } from '../reducers';
 @Component({
   selector: 'kosaml-auth-page',
   template: `
-    <kosaml-loading-spinner *ngIf="(isLoading$ | async) === true"></kosaml-loading-spinner>
-    <kosaml-auth
-      *ngIf="(isLoading$ | async) === false"
-      (loginSubmitted)="onSubmitLogin($event)"
-      (registrationSubmitted)="onSubmitRegistration($event)"
-      [isAuthError]="isAuthError$ | async"
-    >
-    </kosaml-auth>
+    <kosaml-page [width]="400">
+      <div class="container">
+        <kosaml-loading-spinner *ngIf="(isLoading$ | async) === true"></kosaml-loading-spinner>
+        <kosaml-auth
+          *ngIf="(isLoading$ | async) === false"
+          (loginSubmitted)="onSubmitLogin($event)"
+          (registrationSubmitted)="onSubmitRegistration($event)"
+          [isAuthError]="isAuthError$ | async"
+        >
+        </kosaml-auth>
+      </div>
+    </kosaml-page>
   `,
 })
 export class AuthPageComponent {
   isLoading$: Observable<boolean> = this.store.pipe(
     select(fromSite.selectIsLoading),
-    shareReplay()
+    shareReplay(),
   );
 
   isAuthError$: Observable<boolean> = this.store.pipe(

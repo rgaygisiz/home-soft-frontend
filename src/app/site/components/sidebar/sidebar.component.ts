@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FileNode } from '../../models';
 
 @Component({
@@ -28,21 +36,21 @@ export class SidebarComponent implements AfterViewInit {
   @Output()
   widthChange = new EventEmitter();
 
-  @ViewChild("sidenav", { static: true, read: ElementRef })
+  @ViewChild('sidenav', { static: true, read: ElementRef })
   matSideNav: ElementRef;
 
   xOffset: number;
   startingWidth: number;
   isResizing: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
   ngAfterViewInit() {
     this.setNewWidth(this.width);
   }
 
   onLogout() {
-    this.logout.emit()
+    this.logout.emit();
   }
 
   onMouseDown(event) {
@@ -68,23 +76,20 @@ export class SidebarComponent implements AfterViewInit {
     event.preventDefault();
 
     if (this.isResizing) {
-      this.setNewWidth(
-        event.pageX - this.xOffset + this.startingWidth
-      )
+      this.setNewWidth(event.pageX - this.xOffset + this.startingWidth);
     }
   }
 
   private resetMouseCursor() {
-    document.documentElement.style.cursor = "default"
+    document.documentElement.style.cursor = 'default';
   }
 
   private setMouseCursorToResize() {
-    document.documentElement.style.cursor = "col-resize";
+    document.documentElement.style.cursor = 'col-resize';
   }
 
   private setNewWidth(newWidth: number) {
-    this.matSideNav.nativeElement.style.width =
-      `${newWidth}px`;
+    this.matSideNav.nativeElement.style.width = `${newWidth}px`;
   }
 
   private getWidth() {
