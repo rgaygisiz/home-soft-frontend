@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > * {
+  margin-bottom: 32px;
+}
+
+.right {
+  align-self: flex-end;
+}

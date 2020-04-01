@@ -12,7 +12,7 @@ export class PersonsComponent implements OnChanges {
   data: Person[];
 
   dataSource = new MatTableDataSource<Person>();
-  displayedColumns: string[] = ['firstName', 'lastName', 'birthDate', 'birthPlace'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'birthDate', 'birthPlace', 'actions'];
 
   constructor() {}
 
