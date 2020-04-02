@@ -7,9 +7,10 @@ import { AccountsRoutingModule } from './accounts-routing.module';
 import { AccountsComponent } from './components';
 import { AccountsPageComponent } from './containers';
 import { fromAccount } from './reducers';
+import { AccountEditComponent } from './components/account-edit/account-edit.component';
 
 @NgModule({
-  declarations: [AccountsComponent, AccountsPageComponent],
+  declarations: [AccountsComponent, AccountsPageComponent, AccountEditComponent],
   imports: [
     CommonModule,
     AccountsRoutingModule,

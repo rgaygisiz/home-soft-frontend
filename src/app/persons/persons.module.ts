@@ -6,9 +6,10 @@ import { PersonsComponent } from './components/persons/persons.component';
 import { PersonsPageComponent } from './containers/persons-page/persons-page.component';
 import { PersonsRoutingModule } from './persons-routing.module';
 import { fromPerson } from './reducers';
+import { PersonEditComponent } from './components/person-edit/person-edit.component';
 
 @NgModule({
-  declarations: [PersonsComponent, PersonsPageComponent],
+  declarations: [PersonsComponent, PersonsPageComponent, PersonEditComponent],
   imports: [
     CommonModule,
     PersonsRoutingModule,

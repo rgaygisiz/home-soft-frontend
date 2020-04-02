@@ -1,0 +1,18 @@
+.formFieldContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.formFieldContainer > * {
+  margin-bottom: 16px;
+}
+
+.actions {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+}
+
+.actions > * {
+  margin-left: 16px;
+}

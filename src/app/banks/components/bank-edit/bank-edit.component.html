@@ -1,0 +1,15 @@
+<form [formGroup]="bankForm" (ngSubmit)="onSubmit()" class="formFieldContainer">
+  <mat-form-field>
+    <input placeholder="Name" name="name" formControlName="name" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <input placeholder="BIC" name="bic" formControlName="bic" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <input placeholder="BLZ" name="blz" formControlName="blz" matInput />
+  </mat-form-field>
+  <div class="actions">
+    <button mat-button>Abbrechen</button>
+    <button mat-button>Speichern</button>
+  </div>
+</form>

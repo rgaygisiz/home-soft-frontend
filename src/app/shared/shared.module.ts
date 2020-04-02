@@ -16,14 +16,12 @@ import {
   EmptyPageComponent,
   LoadingSpinnerComponent,
   PageComponent,
-  ScenarioComponent,
 } from './components';
 
 const COMPONENTS = [
   LoadingSpinnerComponent,
   EmptyPageComponent,
   CardComponent,
-  ScenarioComponent,
   DataTableComponent,
   PageComponent,
 ];
@@ -56,7 +54,6 @@ const COMPONENTS = [
     MatCardModule,
     LoadingSpinnerComponent,
     CardComponent,
-    ScenarioComponent,
     DataTableComponent,
     PageComponent,
   ],
