@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Account } from '../../models';
@@ -12,5 +13,13 @@ import { fromAccount } from '../../reducers';
 export class AccountsPageComponent {
   accounts$: Observable<Account[]> = this.store.pipe(select(fromAccount.selectAllAccounts));
 
-  constructor(private store: Store<fromAccount.State>) {}
+  constructor(
+    private store: Store<fromAccount.State>,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
+
+  onNewClick() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
+  }
 }

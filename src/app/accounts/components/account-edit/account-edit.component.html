@@ -1,15 +1,17 @@
-<form [formGroup]="accountForm" (ngSubmit)="onSubmit()" class="formFieldContainer">
-  <mat-form-field>
-    <input placeholder="IBAN" name="number" formControlName="number" matInput />
-  </mat-form-field>
-  <mat-form-field>
-    <input placeholder="Bank Name" name="bankName" formControlName="bankName" matInput />
-  </mat-form-field>
-  <mat-form-field>
-    <input placeholder="Holder" name="holder" formControlName="holder" matInput />
-  </mat-form-field>
-  <div class="actions">
-    <button mat-button>Abbrechen</button>
-    <button mat-button>Speichern</button>
-  </div>
-</form>
+<kosaml-card>
+  <form [formGroup]="accountForm" (ngSubmit)="onSubmit()" class="formFieldContainer">
+    <mat-form-field>
+      <input placeholder="IBAN" name="number" formControlName="number" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="Bank Name" name="bankName" formControlName="bankName" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="Holder" name="holder" formControlName="holder" matInput />
+    </mat-form-field>
+    <div class="actions">
+      <button type="button" mat-button (click)="onCancel()">Abbrechen</button>
+      <button mat-button>Speichern</button>
+    </div>
+  </form>
+</kosaml-card>

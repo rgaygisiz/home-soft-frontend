@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./account-edit.component.scss'],
 })
 export class AccountEditComponent implements OnInit {
+  @Output()
+  cancel: EventEmitter<void> = new EventEmitter();
+
   accountForm: FormGroup;
 
   numberFormControl: FormControl = new FormControl(null, [Validators.required]);
@@ -21,5 +24,9 @@ export class AccountEditComponent implements OnInit {
       bankName: this.bankNameFormControl,
       holder: this.holderFormControl,
     });
+  }
+
+  onCancel() {
+    this.cancel.next();
   }
 }

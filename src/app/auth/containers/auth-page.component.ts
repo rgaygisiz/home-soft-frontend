@@ -11,7 +11,7 @@ import { fromAuth } from '../reducers';
 @Component({
   selector: 'kosaml-auth-page',
   template: `
-    <kosaml-page [width]="400">
+    <kosaml-page size="S">
       <div class="container">
         <kosaml-loading-spinner *ngIf="(isLoading$ | async) === true"></kosaml-loading-spinner>
         <kosaml-auth

@@ -19,12 +19,10 @@ export const emptyBankEdit = () => ({
 export const filledBankEdit = () => ({
   component: BankEditComponent,
   props: {
-    data: [
-      {
-        name: 'Dummy Bank',
-        bic: 'FRSPDE66XXX',
-        blz: '68050101',
-      },
-    ],
+    data: {
+      name: 'Dummy Bank',
+      bic: 'FRSPDE66XXX',
+      blz: '68050101',
+    },
   },
 });
