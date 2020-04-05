@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Person } from '../../models';
 
 @Component({
   selector: 'kosaml-person-edit',
@@ -7,6 +8,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./person-edit.component.scss'],
 })
 export class PersonEditComponent implements OnInit {
+  @Input()
+  data: Person;
+
+  @Output()
+  cancel: EventEmitter<void> = new EventEmitter();
+
   personForm: FormGroup;
 
   lastNameFormControl: FormControl = new FormControl(null, [Validators.required]);
@@ -17,11 +24,19 @@ export class PersonEditComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.initForm();
+  }
+
+  private initForm() {
     this.personForm = new FormGroup({
       lastName: this.lastNameFormControl,
       firstName: this.firstNameFormControl,
       birthDate: this.birthDateFormControl,
       birthPlace: this.birthPlaceFormControl,
     });
+  }
+
+  onCancel() {
+    this.cancel.next();
   }
 }

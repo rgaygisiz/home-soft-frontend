@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'kosaml-account-edit-page',
-  templateUrl: './account-edit-page.component.html',
-  styleUrls: ['./account-edit-page.component.scss'],
+  selector: 'kosaml-person-edit-page',
+  templateUrl: './person-edit-page.component.html',
+  styleUrls: ['./person-edit-page.component.scss'],
 })
-export class AccountEditPageComponent implements OnInit {
+export class PersonEditPageComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {}

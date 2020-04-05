@@ -1,18 +1,20 @@
-<form [formGroup]="personForm" (ngSubmit)="onSubmit()" class="formFieldContainer">
-  <mat-form-field>
-    <input placeholder="Nachname" name="lastName" formControlName="lastName" matInput />
-  </mat-form-field>
-  <mat-form-field>
-    <input placeholder="Vorname" name="firstName" formControlName="firstName" matInput />
-  </mat-form-field>
-  <mat-form-field>
-    <input placeholder="Geburtsdatum" name="birthDate" formControlName="birthDate" matInput />
-  </mat-form-field>
-  <mat-form-field>
-    <input placeholder="Geburtsort" name="birthPlace" formControlName="birthPlace" matInput />
-  </mat-form-field>
-  <div class="actions">
-    <button mat-button>Abbrechen</button>
-    <button mat-button>Speichern</button>
-  </div>
-</form>
+<kosaml-card>
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()" class="formFieldContainer">
+    <mat-form-field>
+      <input placeholder="Nachname" name="lastName" formControlName="lastName" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="Vorname" name="firstName" formControlName="firstName" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="Geburtsdatum" name="birthDate" formControlName="birthDate" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="Geburtsort" name="birthPlace" formControlName="birthPlace" matInput />
+    </mat-form-field>
+    <div class="actions">
+      <button mat-button (click)="onCancel()">Abbrechen</button>
+      <button mat-button>Speichern</button>
+    </div>
+  </form>
+</kosaml-card>

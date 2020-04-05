@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'kosaml-bank-edit-page',
@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./bank-edit-page.component.scss'],
 })
 export class BankEditPageComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {}
 
   onCancelClicked() {
-    this.router.navigate(['..']);
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 }
