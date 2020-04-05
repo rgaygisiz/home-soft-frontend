@@ -20,6 +20,6 @@ export class AccountsPageComponent {
   ) {}
 
   onNewClick() {
-    this.router.navigate(['edit'], { relativeTo: this.route });
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 }
