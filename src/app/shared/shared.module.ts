@@ -49,6 +49,7 @@ const COMPONENTS = [
     MatInputModule,
     MatButtonModule,
     MatTableModule,
+    MatSliderModule,
     MatPaginatorModule,
     MatStepperModule,
     MatCardModule,
