@@ -16,6 +16,7 @@ import { SiteEffects } from './effects';
 import { fromSite } from './reducers';
 import { SiteRoutingModule } from './site-routing.module';
 
+
 export const COMPONENTS = [
   HeaderComponent,
   BodyComponent,
@@ -41,4 +42,4 @@ export const COMPONENTS = [
   ],
   exports: [HeaderComponent, BodyComponent, MenuBarComponent],
 })
-export class SiteModule {}
+export class SiteModule { }
