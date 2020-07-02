@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import {map, shareReplay, tap} from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { fromSite } from 'src/app/site/reducers';
 import { fromApp } from '../../store';
 import { AuthActions } from '../actions';
@@ -33,9 +33,7 @@ export class AuthPageComponent {
 
   isAuthError$: Observable<boolean> = this.store.pipe(
     select(fromAuth.selectAuthError),
-    tap(console.log),
     map(authError => !!authError),
-    tap(console.log),
     shareReplay(),
   );
 
