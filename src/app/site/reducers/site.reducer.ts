@@ -31,6 +31,7 @@ export const reducer = createReducer(
   // todo: Move toggling of loading spinner to own effect
   on(AuthActions.startLogin, AuthActions.startSignUp, state => ({ ...state, loading: true })),
   on(AuthActions.authenticationSucceeded, state => ({ ...state, loading: false })),
+  on(AuthActions.authenticationFailed, state => ({ ...state, loading: false })),
   on(SiteActions.toggleProjectBar, state => ({
     ...state,
     isProjectBarOpen: !state.isProjectBarOpen,
