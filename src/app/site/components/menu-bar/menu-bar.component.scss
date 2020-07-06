@@ -1,4 +1,6 @@
-mat-toolbar {
-    height: 36px;
-    padding-left: 0;
+.mat-toolbar {
+  position: sticky;
+  top: 40px;
+  height: 36px;
+  padding-left: 0;
 }
